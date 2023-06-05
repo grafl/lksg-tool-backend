@@ -1,0 +1,24 @@
+POST http://lksg.tool.localdev.me/api/lksg_tool/investigations/
+Content-Type: application/json
+
+[{
+  "id": "7d9dc193-9dd5-4b79-86ec-5aebdff255b1",
+  "company": "5aebdff2-9dd5-4b79-86ec-7d9dc19355b1",
+  "bpn": "BPN0000000000001"
+}]
+###
+POST http://lksg.tool.localdev.me/api/lksg_tool/bpns/
+Content-Type: application/json
+
+[{
+  "bpn": "BPN0000000000007"
+}]
+###
+GET http://lksg.tool.localdev.me/api/lksg_tool/bpns/
+###
+GET http://lksg.tool.localdev.me/api/lksg_tool/companies/
+###
+PUT http://lksg.tool.localdev.me/api/lksg_tool/companies/7904e5af-7f07-45a8-a46a-624769beb2b8/BPN0000000000007
+###
+GET http://lksg.tool.localdev.me/api/lksg_tool/investigations/irs/5aebdff2-9dd5-4b79-86ec-7d9dc19355b1/COMPLETED/YES
+###
