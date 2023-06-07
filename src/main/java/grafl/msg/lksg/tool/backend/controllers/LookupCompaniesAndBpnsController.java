@@ -28,7 +28,6 @@ public class LookupCompaniesAndBpnsController {
     @GetMapping(value = "/")
     public ResponseEntity<List<VCompaniesAndBpns>> getAllCompaniesAndBpns() {
         List<VCompaniesAndBpns> rv = this.lookupCompaniesAndBpnsRepository.findAll();
-        log.info("getAllCompaniesAndBpns(): {}", rv.size());
         return ok().body(rv);
     }
 

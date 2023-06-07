@@ -31,20 +31,17 @@ public class BpnController {
 
     @GetMapping(value = "/")
     public ResponseEntity<List<Bpn>> getAllBpns() throws UnknownHostException {
-        log.info("getAllBpns()");
         return ok().body(this.bpnService.getAllBpns());
     }
 
     @GetMapping(value = "/v/")
     public ResponseEntity<List<VBpn>> getAllVBpns() {
         List<VBpn> rv = this.vBpnRepository.findAll();
-        // log.info("getAllVBpns() -----> {} rows", rv.size());
         return ok().body(rv);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Bpn>> getBpnById(@PathVariable("id") String id) {
-        // log.info("getBpnById({})", id);
         return ok().body(this.bpnService.getBpnById(id));
     }
 
@@ -52,7 +49,6 @@ public class BpnController {
     public List<String> createBpns(@RequestBody List<Bpn> bpns) {
         List<String> bpnIds = new ArrayList<>();
         for(Bpn bpn : bpns) {
-            // log.info("createBpn({})", bpn.toString());
             bpnIds.add(this.bpnService.storeBpn(bpn));
         }
         return bpnIds;

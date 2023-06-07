@@ -48,7 +48,6 @@ public class InvestigationController {
     @GetMapping(value = "/")
     public ResponseEntity<List<EssIncidentRequest>> getAllInvestigations() {
         List<EssIncidentRequest> rv = this.investigationService.getAllInvestigations();
-        log.info("getAllInvestigations() -----> {} rows", rv.size());
         return ok().body(rv);
     }
 
@@ -64,21 +63,17 @@ public class InvestigationController {
             this.essIncidentResponseRepository.save(response);
         }
         List<VInvestigation> rv = this.vInvestigationRepository.findAll();
-        log.info("getAllVInvestigations() -----> {} rows", rv.size());
         return ok().body(rv);
     }
 
     @PostMapping(value = "/")
     public void createNewInvestigations(@RequestBody List<Investigation> investigationRequests) {
-        // ResponseEntity<List<Investigation>>
-        log.info("createNewInvestigations() {}", investigationRequests);
         this.investigationService.createNewInvestigations(investigationRequests);
     }
 
     @GetMapping(value = "/irs/{job_id}")
     public ResponseEntity<Jobs> getSupplyChainImpactedInformation(@PathVariable("job_id") String job_id) {
         Jobs jobs = this.irsFeignClient.getIrsJobId(job_id);
-        // log.info("getSupplyChainImpactedInformation({}: {})", job_id, jobs.getJob().getState());
         return ok().body(jobs);
     }
 
@@ -87,7 +82,6 @@ public class InvestigationController {
                                             @PathVariable("state") String state,
                                             @PathVariable("impacted") String impacted) {
         Jobs jobs = this.irsFeignClient.setAnalysisState(job_id, state, impacted, "SingleLevelUsageAsBuilt");
-        log.info("request IRS set analysis state({}: {} - {})", job_id, state, impacted);
         return ok().body(jobs);
     }
 

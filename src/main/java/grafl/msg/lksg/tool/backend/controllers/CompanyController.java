@@ -27,22 +27,18 @@ public class CompanyController {
     @GetMapping(value = "/")
     public ResponseEntity<List<Company>> getAllCompanies() {
         List<Company> rv = this.companyService.getAllCompanies();
-        log.info("getAllCompanies(): {}", rv.size());
         return ok().body(rv);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Company>> getCompanyById(@PathVariable("id") String id) {
-        // log.info("getCompanyById({})", id);
         return ok().body(this.companyService.getBpnById(id));
     }
 
     @PostMapping(value = "/")
     public List<String> createCompanies(@RequestBody List<Company> companies) {
-        log.info("createCompanies()");
         List<String> bpnIds = new ArrayList<>();
         for(Company company : companies) {
-            log.info("createBpn({})", company.toString());
             bpnIds.add(this.companyService.storeBpn(company));
         }
         return bpnIds;
@@ -51,7 +47,6 @@ public class CompanyController {
     @PutMapping(value = "/{id}/{bpn}")
     public void assignBpnToCompanyById(@PathVariable("id") String id,
                                        @PathVariable("bpn") String bpn) {
-        log.info("assignBpnToCompanyById({}: {})", id, bpn);
         this.companyService.assignBpnToCompanyById(id, bpn);
     }
 
