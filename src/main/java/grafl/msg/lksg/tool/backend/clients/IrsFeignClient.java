@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "${irs.servicename}", configuration = IrsFeignClientConfiguration.class)
+@FeignClient(name = "${irs.servicename}", url = "${irs.hostname}", configuration = IrsFeignClientConfiguration.class)
 public interface IrsFeignClient {
 
     @PostMapping(
