@@ -63,6 +63,7 @@ public class InvestigationController {
             this.essIncidentResponseRepository.save(response);
         }
         List<VInvestigation> rv = this.vInvestigationRepository.findAll();
+        log.info("Total investigations: {}", rv.size());
         return ok().body(rv);
     }
 
